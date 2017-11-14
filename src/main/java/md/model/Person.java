@@ -1,12 +1,11 @@
 package md.model;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 public class Person implements Serializable {
@@ -22,6 +21,10 @@ public class Person implements Serializable {
 
 	@Column(name = "last_name")
 	private String lastName;
+
+	@JsonFormat(pattern = "MM-dd/yyyy", shape = JsonFormat.Shape.STRING)
+	@Column
+	private Date dob;
 
 	public Person() {
 	}
@@ -54,6 +57,14 @@ public class Person implements Serializable {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
 
 	@Override

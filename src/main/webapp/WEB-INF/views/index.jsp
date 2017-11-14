@@ -18,19 +18,6 @@
 <body>
 <h1><c:out value="${listStudents}"/></h1>
 
-<table>
-    <c:forEach items="${studentList}" var="student">
-        <tr>
-            <td>
-                    ${student.getFirstName()}
-            </td>
-            <td>
-                    ${student.getLastName()}
-            </td>
-        </tr>
-    </c:forEach>
-</table>
-
 <div class="container" style="background-color: antiquewhite">
     <form action="#" class="form-inline">
         <div class="row col-lg-12">
@@ -106,72 +93,31 @@
             </thead>
 
             <tbody>
-            <tr>
-                <td>
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description"></span>
-                    </label>
-                </td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>
-                    <button class="btn btn-primary" type="submit">Edit</button>
-                    <button type="button" class="btn btn-success">Add Mark</button>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description"></span>
-                    </label>
-                </td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>
-                    <button class="btn btn-primary" type="submit">Edit</button>
-                    <button type="button" class="btn btn-success">Add Mark</button>
+            <c:forEach items="${studentList}" var="student">
+                <tr>
+                    <td>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description"></span>
+                        </label>
+                    </td>
+                    <td>Cell</td>
+                    <td>${student.getFirstName()} ${student.getLastName()}</td>
+                    <td>${student.getDob()} </td>
+                    <td>Cell</td>
+                    <td>Cell</td>
+                    <td>Cell</td>
+                    <td>Cell</td>
+                    <td>Cell</td>
+                    <td>
+                        <button class="btn btn-primary" type="submit">Edit</button>
+                        <button type="button" class="btn btn-success">Add Mark</button>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description"></span>
-                    </label>
-                </td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>
-                    <button class="btn btn-primary" type="submit">Edit</button>
-                    <button type="button" class="btn btn-success">Add Mark</button>
-
-                </td>
-            </tr>
+                    </td>
+                </tr>
+            </c:forEach>
             </tbody>
 
         </table>
