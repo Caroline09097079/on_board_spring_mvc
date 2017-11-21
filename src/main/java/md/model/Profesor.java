@@ -8,9 +8,25 @@ package md.model;
         import java.util.Date;
 
 @Entity
+@Table (name = "Profesor")
 public class Profesor extends Person {
-    @Column
-   private Double salary ;
+
+    @Id
+    @ManyToMany
+    @JoinColumn (name = "id")
+    private Integer id;
+
+    @Column(name = "salary")
+    private Double salary ;
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Double getSalary() {
         return salary;

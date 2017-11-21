@@ -1,30 +1,37 @@
 package md.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 @Entity
+@Table(name="Person")
+public class Person2 implements Serializable{
 
-public class Person2 {
-
+    private static final long serialVersionUID = -5527566248002296042L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
     private Integer id;
 
+    @Column(name = "First_Name")
     private String firstname;
 
+    @Column(name = "Last_Name")
     private String lastname;
 
+    @Column(name = "Dob")
     private LocalDate dob;
 
+    @Column(name = "Gender")
     private Character gender;
 
+    @Column(name = "Address")
     private Adress address;
 
+    @Column(name = "Phone")
     private Phone phones;
 
+    @Column(name = "Picture")
     private byte picture;
 
     public String getFirstname() {

@@ -1,12 +1,32 @@
 package md.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Address")
 public class Adress {
 
+    @Id
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Integer id;
+
+    @Column(name = "Country")
     private String country;
 
+    @Column(name = "City")
     private String city;
 
+    @Column(name = "Address")
     private String adress;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getCountry() {
         return country;
