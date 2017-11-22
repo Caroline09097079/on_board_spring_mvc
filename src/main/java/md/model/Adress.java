@@ -1,14 +1,15 @@
 package md.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Address")
 public class Adress {
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "Country")
@@ -19,6 +20,10 @@ public class Adress {
 
     @Column(name = "Address")
     private String adress;
+
+    @OneToMany(mappedBy="address")
+    private List<Person2> persons;
+
 
     public Integer getId() {
         return id;
@@ -50,5 +55,13 @@ public class Adress {
 
     public void setAdress(String adress) {
         this.adress = adress;
+    }
+
+    public List<Person2> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(List<Person2> persons) {
+        this.persons = persons;
     }
 }

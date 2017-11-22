@@ -8,8 +8,8 @@ import javax.xml.crypto.Data;
 public class LibraryAbonament {
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "id")
+   @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
 
     @Column (name ="status")

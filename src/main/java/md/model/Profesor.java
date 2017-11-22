@@ -9,24 +9,11 @@ package md.model;
 
 @Entity
 @Table (name = "Profesor")
+@DiscriminatorValue("PROFESOR")
 public class Profesor extends Person {
-
-    @Id
-    @ManyToMany
-    @JoinColumn (name = "id")
-    private Integer id;
 
     @Column(name = "salary")
     private Double salary ;
-
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Double getSalary() {
         return salary;

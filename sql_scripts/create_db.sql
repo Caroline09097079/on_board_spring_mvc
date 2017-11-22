@@ -68,7 +68,7 @@ CREATE TABLE student (
 CREATE TABLE discipline (
   id          SERIAL PRIMARY KEY,
   profesor_id INT,
-  treshold    DOUBLE PRECISION,
+  threshold    DOUBLE PRECISION,
   title       VARCHAR(50),
   CONSTRAINT fk_discipline_to_profesor FOREIGN KEY (profesor_id) REFERENCES profesor (id)
 );

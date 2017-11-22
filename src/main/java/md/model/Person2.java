@@ -10,8 +10,13 @@ public class Person2 implements Serializable{
     private static final long serialVersionUID = -5527566248002296042L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
-    private Integer id;
+    @Column(name="person_id")
+    private Integer personid;
+
+
+    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch=FetchType.LAZY)
+    @JoinTable(name="person_address", joinColumns = @JoinColumn(name = ""))
+    private Adress adress;
 
     @Column(name = "First_Name")
     private String firstname;

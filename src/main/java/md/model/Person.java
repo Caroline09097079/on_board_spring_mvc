@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="type")
 public class Person implements Serializable {
 
 	private static final long serialVersionUID = -1308795024262635690L;

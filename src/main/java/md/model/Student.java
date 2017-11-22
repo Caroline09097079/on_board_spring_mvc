@@ -2,7 +2,10 @@ package md.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
+@DiscriminatorValue("STUDENT")
+@Entity
 public class Student extends Person2 {
 
     @ManyToOne
@@ -10,7 +13,7 @@ public class Student extends Person2 {
     private Group group;
 
     @OneToMany(mappedBy = "student")
-    private Collection<Mark> marks;
+    private List<Mark> marks;
 
     @ManyToMany
     @JoinTable(name = "student_discipline",
