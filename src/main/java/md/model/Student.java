@@ -6,7 +6,7 @@ import java.util.List;
 
 @DiscriminatorValue("STUDENT")
 @Entity
-public class Student extends Person2 {
+public class Student extends Person {
 
     @ManyToOne
     @JoinColumn(name = "group_id")
@@ -20,7 +20,8 @@ public class Student extends Person2 {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "discipline_id"))
     private Collection<Discipline> disciplines;
-//
+
+
 //    public double calculateASd(){
 //        return marks.stream()
 //                .mapToInt(Mark::getMark)
@@ -43,7 +44,7 @@ public class Student extends Person2 {
         return marks;
     }
 
-    public void setMarks(Collection<Mark> marks) {
+    public void setMarks(List<Mark> marks) {
         this.marks = marks;
     }
 

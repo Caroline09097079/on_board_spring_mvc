@@ -1,118 +1,106 @@
 package md.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
-
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-@DiscriminatorColumn(name="type")
-public class Person implements Serializable {
+@Table(name="Person")
+public class Person implements Serializable{
 
-	private static final long serialVersionUID = -1308795024262635690L;
+    private static final long serialVersionUID = -5527566248002296042L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="person_id")
+    private Integer id;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
 
-	@Column(name = "first_name")
-	private String firstName;
+    @ManyToOne
+    @JoinTable(name="person_address", joinColumns = @JoinColumn(name = ""))
+    private Adress address;
 
-	@Column(name = "last_name")
-	private String lastName;
+    @Column(name = "First_Name")
+    private String firstname;
 
-	@JsonFormat(pattern = "MM-dd/yyyy", shape = JsonFormat.Shape.STRING)
-	@Column
-	private Date dob;
+    @Column(name = "Last_Name")
+    private String lastname;
 
-	public Person() {
-	}
+    @Column(name = "Dob")
+    private LocalDate dob;
 
-	public Person(String firstName, String lastName) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
+    @Column(name = "Gender")
+    private Character gender;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(name = "Phone")
+    private Phone phones;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(name = "Picture")
+    private byte picture;
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public Adress getAddress() {
+        return address;
+    }
 
-	public Date getDob() {
-		return dob;
-	}
+    public void setAddress(Adress address) {
+        this.address = address;
+    }
 
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
+    public String getFirstname() {
+        return firstname;
+    }
 
-	@Override
-	public String toString() {
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-		return super.toString() + " name = " + firstName + " " + lastName
-				+ " id = " + id;
-	}
+    public String getLastname() {
+        return lastname;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((lastName == null) ? 0 : lastName.hashCode());
-		return result;
-	}
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Person other = (Person) obj;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		return true;
-	}
+    public LocalDate getDob() {
+        return dob;
+    }
 
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public Character getGender() {
+        return gender;
+    }
+
+    public void setGender(Character gender) {
+        this.gender = gender;
+    }
+
+    public Phone getPhones() {
+        return phones;
+    }
+
+    public void setPhones(Phone phones) {
+        this.phones = phones;
+    }
+
+    public byte getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte picture) {
+        this.picture = picture;
+    }
 }

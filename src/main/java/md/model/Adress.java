@@ -22,7 +22,7 @@ public class Adress {
     private String adress;
 
     @OneToMany(mappedBy="address")
-    private List<Person2> persons;
+    private List<Person> persons;
 
 
     public Integer getId() {
@@ -57,11 +57,11 @@ public class Adress {
         this.adress = adress;
     }
 
-    public List<Person2> getPersons() {
+    public List<Person> getPersons() {
         return persons;
     }
 
-    public void setPersons(List<Person2> persons) {
+    public void setPersons(List<Person> persons) {
         this.persons = persons;
     }
 }

@@ -3,7 +3,9 @@ package md.controller;
 import java.util.List;
 
 import md.dao.PersonDao;
+import md.dao.StudentDao;
 import md.model.Person;
+import md.model.Student;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,29 +23,29 @@ public class PersonController {
 	private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 
 	@Autowired
-	private PersonDao personDao;
+	private StudentDao studentDao;
 	
 	@RequestMapping(method=RequestMethod.GET,value="edit")
-	public ModelAndView editPerson(@RequestParam(value="id",required=false) Long id) {		
+	public ModelAndView editStudent(@RequestParam(value="id",required=false) Long id) {
 		logger.debug("Received request to edit person id : "+id);				
 		ModelAndView mav = new ModelAndView();		
  		mav.setViewName("edit");
- 		Person person = null;
+ 		Student student = null;
  		if (id == null) {
- 			person = new Person();
+ 			student = new Student();
  		} else {
- 			person = personDao.find(id);
+ 			student = studentDao.find(id);
  		}
  		
- 		mav.addObject("person", person);
+ 		mav.addObject("stdent", student);
 		return mav;
 		
 	}
 	
 	@RequestMapping(method=RequestMethod.POST,value="edit") 
-	public String savePerson(@ModelAttribute Person person) {
-		logger.debug("Received postback on person "+person);		
-		personDao.save(person);
+	public String savePerson(@ModelAttribute Student student) {
+		logger.debug("Received postback on person "+student);
+		studentDao.save(student);
 		return "redirect:list";
 		
 	}
@@ -52,7 +54,7 @@ public class PersonController {
 	public ModelAndView listPeople() {
 		logger.debug("Received request to list persons");
 		ModelAndView mav = new ModelAndView();
-		List<Person> people = personDao.getPeople();
+		List<Student> people = studentDao.getPeople();
 		logger.debug("Person Listing count = "+people.size());
 		mav.addObject("people",people);
 		mav.setViewName("list");

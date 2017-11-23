@@ -8,8 +8,8 @@ import javax.persistence.*;
 public class PhoneType {
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "phone_type")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "phone_type")
     private Integer id;
 
     @Column(name = "name")

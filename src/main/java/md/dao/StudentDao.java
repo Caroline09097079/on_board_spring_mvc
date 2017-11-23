@@ -1,51 +1,36 @@
 package md.dao;
 
+import md.model.Person;
+import md.model.Student;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
+
+@Repository
 public class StudentDao {
-//    private AdressDao adressDao;
-//
-//    private GroupDao groupDao;
-//
-//    public StudentDao() {
-//        adressDao = new AdressDao();
-//        groupDao = new GroupDao();
-//    }
-//
-//    public List<Student> findAll() {
-//        Statement statement = null;
-//        ResultSet result = null;
-//        List<Student> students = new ArrayList<>();
-//
-//        try {
-//            statement = ConnectionManager.conn().createStatement();
-//            result = statement.executeQuery("select * from person p left join student s on p.id = s.id");
-////select m.* from mark m left join student s on s.id = m.student_id where s.id = ?
-//
-//
-//            select p.* from phone p
-//            left join phone_type pt on pt.id = p.phone_type_id
-//            left join person_phones pp on pp.phone_id = p.id
-//            left join student s on s.id = pp.person_id
-//            where s.id = ?
-//
-//            while (result.next()) {
-//                Student student = new Student();
-//                student.setDob(result.getDate("dob").toLocalDate());
-//              //  student.setDob(result.getDate("dob").toLocalDate());
-//                student.setFirstname(result.getString("first_name"));
-//                student.setLastname(result.getString("last_name"));
-//                student.setAddress(adressDao.findOneById(result.getLong("address_id")));
-//                student.setGroup(groupDao.findOneById(result.getLong("group_id")));
-//                student.setPhone(phoneDao.findOneById(result.getLong("phone_id")));
-//                student.setGender(result.getString("gender"));
-//
-//                students.add(student);
-//            }
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        } finally {
-//            ConnectionManager.closs(statement, result);
-//        }
-//
-//        return students;
-//    }
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public Student find(Long id) {
+        return entityManager.find(Student.class, id);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Student> getPeople() {
+        return entityManager.createQuery("select p from Student p").getResultList();
+    }
+
+    @Transactional
+    public Student save(Student student) {
+        if (student.getId() == null) {
+            entityManager.persist(student);
+            return student;
+        } else {
+            return entityManager.merge(student);
+        }
+    }
 }
